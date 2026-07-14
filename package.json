@@ -1,0 +1,38 @@
+{
+  "name": "watchparty",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev:server & npm run dev:client",
+    "dev:client": "node ./node_modules/vite/bin/vite.js",
+    "dev:server": "node ./node_modules/nodemon/bin/nodemon.js server/index.js",
+    "build": "node ./node_modules/vite/bin/vite.js build",
+    "preview": "node ./node_modules/vite/bin/vite.js preview",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "nanoid": "^5.1.16",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.0",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.0",
+    "vite": "^7.0.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.0",
+    "globals": "^15.0.0",
+    "nodemon": "^3.1.14",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0"
+  }
+}
