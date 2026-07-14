@@ -40,6 +40,6 @@ app.use((_req, res) => {
 
 registerSocketHandlers(io);
 
-server.listen(PORT, '127.0.0.1', () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Watch Party server listening on port ${PORT}`);
 });

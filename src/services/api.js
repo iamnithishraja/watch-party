@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://127.0.0.1:4000';
+const API_URL = import.meta.env.VITE_API_URL ?? '';
 
 async function request(path, options = {}) {
   const response = await fetch(`${API_URL}${path}`, {
@@ -9,10 +9,17 @@ async function request(path, options = {}) {
     ...options,
   });
 
-  const data = await response.json();
+  const text = await response.text();
+  let data;
+
+  try {
+    data = text ? JSON.parse(text) : {};
+  } catch {
+    throw new Error(response.ok ? 'Invalid server response' : `Request failed (${response.status})`);
+  }
 
   if (!response.ok) {
-    throw new Error(data.message || 'Request failed');
+    throw new Error(data.message || `Request failed (${response.status})`);
   }
 
   return data;
