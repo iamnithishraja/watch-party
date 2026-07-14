@@ -26,13 +26,13 @@ app.set('io', io);
 app.use(cors({ origin: CLIENT_ORIGIN }));
 app.use(express.json());
 
-app.use(express.static(distPath));
-
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
 
 app.use('/api/rooms', roomRoutes);
+
+app.use(express.static(distPath));
 
 app.use((_req, res) => {
   res.sendFile(path.join(distPath, 'index.html'));
