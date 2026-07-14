@@ -324,52 +324,51 @@ function RoomPlaceholder() {
           </section>
         ) : (
           <section className="grid flex-1 gap-4 py-4 lg:grid-cols-[1fr_340px]">
-            <div className="flex min-w-0 flex-col gap-4">
-              <div className="overflow-hidden rounded-lg border border-white/10 bg-black shadow-2xl shadow-black/30">
-                <div className="relative aspect-video bg-[#090d16]">
-                  {(localScreenStream || remoteScreenStream) ? (
-                    <video
-                      autoPlay
-                      className="h-full w-full bg-black object-contain"
-                      muted={Boolean(localScreenStream)}
-                      playsInline
-                      ref={videoRef}
-                    />
-                  ) : currentRoom?.media?.mode === 'youtube' && youtubeVideoId ? (
-                    <YouTubePlayer
-                      participantId={currentParticipant.id}
-                      playback={currentRoom.media}
-                      roomId={roomId}
-                      socket={socket}
-                      videoId={youtubeVideoId}
-                    />
-                  ) : currentRoom?.media?.mode === 'screen' ? (
-                    <div className="grid h-full place-items-center px-6 text-center text-slate-300">
-                      <div>
-                        <p className="text-xl font-semibold text-white">Connecting to screen share</p>
-                        <p className="mt-2 text-sm">
-                          {currentRoom.media.sharedBy
-                            ? `Waiting for ${currentRoom.media.sharedBy}'s stream...`
-                            : 'Waiting for the shared screen...'}
-                        </p>
-                      </div>
+            <div className="overflow-hidden rounded-lg border border-white/10 bg-black shadow-2xl shadow-black/30 max-lg:sticky max-lg:top-0 max-lg:z-30 max-lg:-mx-4 max-lg:w-[calc(100%+2rem)] max-lg:rounded-none max-lg:border-x-0 max-lg:border-t-0 max-lg:shadow-none lg:col-start-1 lg:row-start-1">
+              <div className="relative aspect-video bg-[#090d16]">
+                {(localScreenStream || remoteScreenStream) ? (
+                  <video
+                    autoPlay
+                    className="h-full w-full bg-black object-contain"
+                    muted={Boolean(localScreenStream)}
+                    playsInline
+                    ref={videoRef}
+                  />
+                ) : currentRoom?.media?.mode === 'youtube' && youtubeVideoId ? (
+                  <YouTubePlayer
+                    participantId={currentParticipant.id}
+                    playback={currentRoom.media}
+                    roomId={roomId}
+                    socket={socket}
+                    videoId={youtubeVideoId}
+                  />
+                ) : currentRoom?.media?.mode === 'screen' ? (
+                  <div className="grid h-full place-items-center px-6 text-center text-slate-300">
+                    <div>
+                      <p className="text-xl font-semibold text-white">Connecting to screen share</p>
+                      <p className="mt-2 text-sm">
+                        {currentRoom.media.sharedBy
+                          ? `Waiting for ${currentRoom.media.sharedBy}'s stream...`
+                          : 'Waiting for the shared screen...'}
+                      </p>
                     </div>
-                  ) : (
-                    <div className="grid h-full place-items-center px-6 text-center text-slate-400">
-                      <div>
-                        <p className="text-xl font-semibold text-white">Nothing is playing yet</p>
-                        <p className="mt-2 text-sm">
-                          {isHost
-                            ? 'Paste a YouTube link below, or share your screen.'
-                            : 'Waiting for the host to start a video or share a screen.'}
-                        </p>
-                      </div>
+                  </div>
+                ) : (
+                  <div className="grid h-full place-items-center px-6 text-center text-slate-400">
+                    <div>
+                      <p className="text-xl font-semibold text-white">Nothing is playing yet</p>
+                      <p className="mt-2 text-sm">
+                        {isHost
+                          ? 'Paste a YouTube link below, or share your screen.'
+                          : 'Waiting for the host to start a video or share a screen.'}
+                      </p>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
+            </div>
 
-              <div className="rounded-lg border border-white/10 bg-panel/80 p-4">
+            <div className="rounded-lg border border-white/10 bg-panel/80 p-4 lg:col-start-1 lg:row-start-2">
                 {isHost ? (
                   <form className="mb-4 flex flex-col gap-3 sm:flex-row" onSubmit={handleLoadYoutube}>
                     <label className="sr-only" htmlFor="youtube-url">
@@ -423,9 +422,8 @@ function RoomPlaceholder() {
                   </button>
                 </div>
               </div>
-            </div>
 
-            <aside className="grid min-h-[560px] gap-4 lg:grid-rows-[auto_1fr]">
+            <aside className="grid min-h-[560px] gap-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:grid-rows-[auto_1fr]">
               <div className="rounded-lg border border-white/10 bg-panel/80 p-5">
                 <div className="flex items-center justify-between gap-3">
                   <h2 className="text-lg font-semibold text-white">Participants</h2>
